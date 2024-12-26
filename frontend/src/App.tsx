@@ -1,9 +1,10 @@
-
+import LinkForm from "./components/LinkForm/LinkForm.tsx";
 
 const App = () => {
   return (
-    <h1>
-    </h1>
+    <>
+      <LinkForm />
+    </>
   );
 };
 
