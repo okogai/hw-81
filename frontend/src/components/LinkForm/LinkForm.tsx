@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axiosAPI from "../../utils/axiosAPI.ts";
 import { ILink } from "../../types";
+import { isAxiosError } from 'axios';
 
 const LinkForm = () => {
   const [url, setUrl] = useState<string>("");
@@ -20,12 +21,15 @@ const LinkForm = () => {
       const response = await axiosAPI.post<ILink>("links", { url });
       if (response.data) {
         setShortUrl(response.data.shortUrl);
-        setUrl("");
       }
     } catch (err) {
-      console.error(err);
+      if (isAxiosError(err)) {
+        const errorData = err.response?.data as ({error: string});
+        alert(errorData?.error);
+      }
     } finally {
       setLoading(false);
+      setUrl("");
     }
   };
   return (

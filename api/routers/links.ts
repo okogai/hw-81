@@ -36,7 +36,7 @@ linksRouter.post('/', async (req, res, next) => {
         res.status(400).json({ error: 'URL is required' });
         return;
     } else if (!isUrl(url)) {
-        res.status(400).json({ error: 'Invalid URL' });
+        res.status(400).json({ error: 'Please use valid URL' });
         return;
     }
 
