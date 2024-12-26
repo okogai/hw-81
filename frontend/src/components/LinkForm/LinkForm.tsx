@@ -18,7 +18,7 @@ const LinkForm = () => {
 
     try {
       setLoading(true);
-      const response = await axiosAPI.post<ILink>("links", { url });
+      const response = await axiosAPI.post<ILink>("/links", { url });
       if (response.data) {
         setShortUrl(response.data.shortUrl);
       }
@@ -71,12 +71,12 @@ const LinkForm = () => {
             <div className="mt-4 text-center">
               <h5>Your link now looks like this:</h5>
               <a
-                href={`http://localhost:8000/links/${shortUrl}`}
+                href={`http://localhost:8000/${shortUrl}`}
                 className="btn btn-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                http://localhost:8000/links/{shortUrl}
+                http://localhost:8000/{shortUrl}
               </a>
             </div>
           )}

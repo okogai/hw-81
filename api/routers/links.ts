@@ -16,19 +16,6 @@ linksRouter.get('/', async (_req, res, next) => {
     }
 });
 
-linksRouter.get('/:shortUrl', async (req, res, next) => {
-    try {
-        const result = await Link.findOne({ shortUrl: req.params.shortUrl });
-        if (!result) {
-            res.status(404).json({ error: 'Not found' });
-            return;
-        }
-        res.status(301).redirect(result.originalUrl);
-    } catch (e) {
-        next(e);
-    }
-});
-
 linksRouter.post('/', async (req, res, next) => {
     const { url } = req.body;
 
